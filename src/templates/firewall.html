@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>防火墙管理界面</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<div id="toastContainer"></div>
+
+<div class="container">
+    <header>
+        <h1>防火墙管理界面</h1>
+    </header>
+
+    <div class="secondary-actions">
+        <button class="secondary-btn" id="loginBtn">登录</button>
+        <button class="secondary-btn" id="treeBtn">刷新应用列表</button>
+    </div>
+
+    <div class="main-section">
+        <div class="tab-header">
+            <button class="tab-btn active" data-tab="session">📱获取会话信息</button>
+            <button class="tab-btn" data-tab="capture">🔍 抓包功能</button>
+            <!-- 可以在这里添加更多标签按钮 -->
+        </div>
+        
+        <div id="session-tab" class="tab-content active">
+            <div class="input-group">
+                <div class="input-field">
+                    <label for="forwardSrc">源地址</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="forwardSrc" placeholder="请输入源地址" value="192.168.66.2">
+                        <span class="clear-btn" data-clear-for="forwardSrc">✖️</span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <label for="forwardDst">目的地址</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="forwardDst" placeholder="目的地址">
+                        <span class="clear-btn" data-clear-for="forwardDst">✖️</span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <label for="appDesc">应用</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="appDesc" placeholder="请输入应用名" autocomplete="off">
+                        <span class="clear-btn" data-clear-for="appDesc">✖️</span>
+                        <div id="appDropdown"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="main-btn" id="sessionBtn">获取会话信息</button>
+
+            <div id="sessionResult" class="result-area">
+                <p>填写信息并点击上方按钮后，会话信息将显示在这里</p>
+            </div>
+        </div>
+        
+        <!-- 可以在这里添加更多标签内容 -->
+        <!-- ========================= 抓包控制 TAB ========================= -->
+        <div id="capture-tab" class="tab-content">
+            <div class="input-group">
+                <div class="input-field">
+                    <label for="outputFile">输出文件名</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="outputFile" value="Capture Session">
+                            <span class="clear-btn" data-clear-for="outputFile">✖️</span>
+                        </div>
+                </div>
+                <!-- 抓包模式 -->
+                    <div class="input-field">
+                        <label for="captureMode">抓包模式</label>
+                        <select id="captureMode">
+                            <option value="none">none</option>
+                            <option value="ja">ja</option>
+                            <option value="ip_filter">ip_filter</option>
+                            <option value="ja_ip_filter">ja_ip_filter</option>
+                        </select>
+                    </div>
+            </div>
+
+                <div style="display:flex; gap:15px;">
+                    <button class="main-btn" id="startCaptureBtn">开始抓包</button>
+                    <button class="main-btn" id="stopCaptureBtn" style="background:#e74c3c;" disabled>停止抓包</button>
+                </div>
+
+                <div id="captureResult" class="result-area">
+                    <p>你可以在这里看到抓包启动 / 停止后的消息。</p>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+    </div>
+
+    <footer>
+        <p>防火墙管理系统 &copy; 2026</p>
+    </footer>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
